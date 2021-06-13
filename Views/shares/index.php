@@ -1,5 +1,6 @@
 <div>
     <div class="row mb-5">
+        <?php if (isset($_SESSION['is_logged_in'])): ?>
         <div class="col-md-6-offset-6">
     <a href="<?php ROOT_URL?>/shares/create" class="btn btn-success btn-share">
         Share Something
@@ -7,11 +8,13 @@
     <!-- /.btn btn-success btn-share -->
         </div>
         <!-- /.col-md-6-offset-6 -->
+        <?php endif; ?>
     </div>
     <!-- /.row -->
-    <div class="row text-start">
     <?php foreach ($viewmodel as $item) : ?>
-    <div class="col-md-6">
+        <div class="row text-start">
+
+        <div class="col-md-6">
     <div class="card bg-light">
         <div class="card-header">
             <h3><?php echo $item['title'];
@@ -34,8 +37,10 @@
         <!-- /.card -->
     </div>
         <!-- /.col-md-6 -->
-
-    <?php endforeach; ?>
     </div>
-    <!-- /.row -->
+        <!-- /.row -->
+        <br>
+    <?php endforeach; ?>
+
+
 </div>

@@ -23,11 +23,22 @@
                 <a class="nav-link" href="<?php echo ROOT_URL?>/shares">Shares</a>
 
             </div>
+            <?php if(isset($_SESSION['is_logged_in'])):?>
             <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <a class="nav-link "  href="<?php echo ROOT_URL;?>">Welcome <?php
+                    if( isset($_SESSION['user_data']))
+                        echo $_SESSION['user_data']['name'];
+                    ?></a>
+                <a class="nav-link" href="<?php echo ROOT_URL?>/users/logout">Logout</a>
+
+            </div>
+            <?php else:?>       <div class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <a class="nav-link "  href="<?php echo ROOT_URL;?>/users/login">Login</a>
                 <a class="nav-link" href="<?php echo ROOT_URL?>/users/register">Register</a>
 
             </div>
+
+            <?php endif;?>
         </div>
     </div>
 </nav>
@@ -35,6 +46,7 @@
 <main>
 <section class="py-5 text-center container">
     <div class="row">
+        <?php Messages::display(); ?>
         <?php require($View); ?>
 
     </div>

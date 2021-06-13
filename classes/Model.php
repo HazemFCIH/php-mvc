@@ -32,11 +32,15 @@ public function query($query){
         return $this->stmt->execute();
     }
     public function lastInsertId(){
-        $this->dbh->lastInsertId();
+        return $this->dbh->lastInsertId();
     }
     public function resultSet(){
         $this->execute();
         return $this->stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
+    public function single(){
+        $this->execute();
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
