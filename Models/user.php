@@ -4,7 +4,12 @@ class UserModel extends Model
     public function register()
     {
         $post = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
         if(isset($post['submit'])){
+            if($post['name'] == '' ||$post['email'] == '' || $post['password'] == ''){
+                Messages::setMsg('Please Fill In All fields','error');
+                return;
+            }
             $password = md5($post['password']);
             $this->query('INSERT INTO users (name,email,password) VALUES (:name,:email,:password)');
             $this->bind(':name',$post['name']);
